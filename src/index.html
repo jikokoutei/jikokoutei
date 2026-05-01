@@ -1,12 +1,709 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jikokoutei — Eren's Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cyan: #00f5ff;
+    --purple: #bf00ff;
+    --pink: #ff006e;
+    --bg: #020408;
+    --bg2: #050d14;
+    --bg3: #0a1628;
+    --text: #c8e6f5;
+    --muted: #4a7fa0;
+    --border: rgba(0,245,255,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* MATRIX RAIN */
+  #matrix-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* SCAN LINES */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* TOP NAV */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+  }
+  .nav-brand {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+  .nav-brand span { color: var(--cyan); }
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #00ff88;
+    display: inline-block;
+    margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; box-shadow: 0 0 6px #00ff88; }
+    50% { opacity:0.5; box-shadow: none; }
+  }
+  .nav-right {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 60px;
+  }
+
+  .hero-text h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(32px, 6vw, 58px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 4px;
+  }
+
+  .glitch {
+    position: relative;
+    display: inline-block;
+    color: var(--cyan);
+    text-shadow: 0 0 30px rgba(0,245,255,0.4);
+  }
+  .glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+  }
+  .glitch::before {
+    color: var(--pink);
+    animation: glitch1 3.5s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+  }
+  .glitch::after {
+    color: var(--purple);
+    animation: glitch2 3.5s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+  @keyframes glitch1 {
+    0%,90%,100% { transform: translate(0); opacity: 0; }
+    92% { transform: translate(-3px, 1px); opacity: 1; }
+    94% { transform: translate(3px, -1px); opacity: 1; }
+    96% { transform: translate(-2px); opacity: 1; }
+    98% { opacity: 0; }
+  }
+  @keyframes glitch2 {
+    0%,90%,100% { transform: translate(0); opacity: 0; }
+    91% { transform: translate(3px); opacity: 1; }
+    93% { transform: translate(-3px, 1px); opacity: 1; }
+    95% { transform: translate(2px); opacity: 1; }
+    97% { opacity: 0; }
+  }
+
+  .hero-name-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+  }
+  .hero-name-sub span { color: var(--cyan); }
+
+  .typewriter-wrap {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 24px;
+    min-height: 22px;
+  }
+  .typewriter-wrap::before { content: '> '; color: var(--cyan); }
+  #typewriter { }
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: var(--cyan);
+    margin-left: 2px;
+    animation: blink .7s infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 0%,50% { opacity:1; } 51%,100% { opacity:0; } }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    border: 1px solid;
+    text-transform: uppercase;
+  }
+  .badge-cyan { border-color: var(--cyan); color: var(--cyan); background: rgba(0,245,255,0.06); }
+  .badge-purple { border-color: var(--purple); color: var(--purple); background: rgba(191,0,255,0.06); }
+  .badge-pink { border-color: var(--pink); color: var(--pink); background: rgba(255,0,110,0.06); }
+  .badge-green { border-color: #00ff88; color: #00ff88; background: rgba(0,255,136,0.06); }
+  .badge-amber { border-color: #ffaa00; color: #ffaa00; background: rgba(255,170,0,0.06); }
+
+  .hero-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .link-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    padding: 8px 18px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    text-decoration: none;
+    color: var(--text);
+    background: rgba(0,245,255,0.03);
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 1px;
+  }
+  .link-btn:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: rgba(0,245,255,0.08);
+    box-shadow: 0 0 16px rgba(0,245,255,0.15);
+  }
+  .link-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* AVATAR */
+  .hero-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .avatar-frame {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+  .avatar-frame::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 4px;
+    background: conic-gradient(var(--cyan), var(--purple), var(--pink), var(--cyan));
+    animation: spin 4s linear infinite;
+    z-index: -1;
+  }
+  .avatar-frame::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--bg);
+    border-radius: 3px;
+    z-index: -1;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .avatar-inner {
+    width: 120px;
+    height: 120px;
+    background: var(--bg3);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--cyan);
+    position: relative;
+    overflow: hidden;
+  }
+  .avatar-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0,245,255,0.1), transparent 70%);
+  }
+  .avatar-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  .level-bar-wrap {
+    width: 120px;
+  }
+  .level-bar-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+  .level-bar-label span:last-child { color: var(--cyan); }
+  .level-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .level-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--purple));
+    width: 0%;
+    animation: fillBar 2s 1s ease forwards;
+  }
+  @keyframes fillBar { to { width: 18%; } }
+
+  /* DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 50px 0 28px;
+  }
+  .section-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .section-divider-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--cyan);
+    text-transform: uppercase;
+  }
+
+  /* LANGUAGES */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+  .lang-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 14px 14px;
+    text-align: center;
+    transition: all .2s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .lang-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .lang-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0,245,255,0.3);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  .lang-icon {
+    font-size: 26px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .lang-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .lang-level {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .py .lang-name { color: #3b82f6; }
+  .py::before { background: #3b82f6; }
+  .py .lang-level { color: rgba(59,130,246,0.6); }
+
+  .js .lang-name { color: #f7df1e; }
+  .js::before { background: #f7df1e; }
+  .js .lang-level { color: rgba(247,223,30,0.6); }
+
+  .html .lang-name { color: #e44d26; }
+  .html::before { background: #e44d26; }
+  .html .lang-level { color: rgba(228,77,38,0.6); }
+
+  .c-lang .lang-name { color: #a8b9cc; }
+  .c-lang::before { background: #a8b9cc; }
+  .c-lang .lang-level { color: rgba(168,185,204,0.6); }
+
+  .cpp .lang-name { color: #00599c; }
+  .cpp::before { background: #00a0e3; }
+  .cpp .lang-level { color: rgba(0,160,227,0.6); }
+
+  .java .lang-name { color: #ed8b00; }
+  .java::before { background: #ed8b00; }
+  .java .lang-level { color: rgba(237,139,0,0.6); }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 520px) { .about-grid { grid-template-columns: 1fr; } .hero { grid-template-columns: 1fr; } .hero-avatar { flex-direction: row; align-items: flex-start; } }
+
+  .about-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+  }
+  .about-card-header {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .about-card-header::before { content: '// '; color: var(--cyan); opacity: 0.5; }
+  .about-card-value {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .about-card-value a {
+    color: var(--cyan);
+    text-decoration: none;
+  }
+  .about-card-value a:hover { text-decoration: underline; }
+
+  /* TERMINAL QUOTE */
+  .terminal-quote {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin: 50px 0 0;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    position: relative;
+    overflow: hidden;
+  }
+  .terminal-quote::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(var(--cyan), var(--purple));
+  }
+  .terminal-top {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .t-dot:nth-child(1) { background: #ff5f57; }
+  .t-dot:nth-child(2) { background: #febc2e; }
+  .t-dot:nth-child(3) { background: #28c840; }
+  .terminal-line { margin-bottom: 6px; }
+  .terminal-line .prompt { color: var(--cyan); }
+  .terminal-line .cmd { color: #e2c08d; }
+  .terminal-line .out { color: var(--muted); }
+  .terminal-line .val { color: #a8ff78; }
+  .terminal-line .str { color: #ff9d9d; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .footer-left {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .footer-left span { color: var(--pink); }
+  .footer-right {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* Animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp .6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .d1 { animation-delay: .1s; }
+  .d2 { animation-delay: .2s; }
+  .d3 { animation-delay: .3s; }
+  .d4 { animation-delay: .4s; }
+  .d5 { animation-delay: .5s; }
+  .d6 { animation-delay: .6s; }
+</style>
 </head>
 <body>
-   <h1>welcome to jikokoutei web</h1>
-   <p>Hi..</p>
+
+<canvas id="matrix-canvas"></canvas>
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav class="nav fade-up d1">
+    <div class="nav-brand"><span>~/</span>jikokoutei<span>.profile</span></div>
+    <div class="nav-right"><span class="status-dot"></span>ONLINE</div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-text fade-up d2">
+      <div class="hero-name-sub">_HELLO WORLD. I AM</div>
+      <h1><span class="glitch" data-text="EREN">EREN</span></h1>
+      <div class="hero-name-sub" style="margin-top:6px;">AKA <span>@JIKOKOUTEI</span></div>
+      <div class="typewriter-wrap"><span id="typewriter"></span><span class="cursor"></span></div>
+      <div class="badges">
+        <span class="badge badge-cyan">Beginner</span>
+        <span class="badge badge-pink">Anime Lover</span>
+        <span class="badge badge-purple">Content Creator</span>
+        <span class="badge badge-green">Coding is Life</span>
+        <span class="badge badge-amber">Project Manager</span>
+      </div>
+      <div class="hero-links">
+        <a class="link-btn" href="https://github.com/jikokoutei" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          github/jikokoutei
+        </a>
+        <a class="link-btn" href="https://instagram.com/jikokoutei" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          ig/jikokoutei
+        </a>
+      </div>
+    </div>
+    <div class="hero-avatar fade-up d3">
+      <div class="avatar-frame">
+        <div class="avatar-inner">E</div>
+      </div>
+      <div class="avatar-tag">LEVEL 01</div>
+      <div class="level-bar-wrap">
+        <div class="level-bar-label"><span>XP</span><span>18%</span></div>
+        <div class="level-bar"><div class="level-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section-divider fade-up d3">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-title">Languages</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="lang-grid fade-up d4">
+    <div class="lang-card py">
+      <span class="lang-icon">🐍</span>
+      <div class="lang-name">Python</div>
+      <div class="lang-level">// LEARNING</div>
+    </div>
+    <div class="lang-card js">
+      <span class="lang-icon">⚡</span>
+      <div class="lang-name">JavaScript</div>
+      <div class="lang-level">// LEARNING</div>
+    </div>
+    <div class="lang-card html">
+      <span class="lang-icon">🌐</span>
+      <div class="lang-name">HTML</div>
+      <div class="lang-level">// LEARNING</div>
+    </div>
+    <div class="lang-card c-lang">
+      <span class="lang-icon">⚙️</span>
+      <div class="lang-name">C</div>
+      <div class="lang-level">// LEARNING</div>
+    </div>
+    <div class="lang-card cpp">
+      <span class="lang-icon">🔷</span>
+      <div class="lang-name">C++</div>
+      <div class="lang-level">// LEARNING</div>
+    </div>
+    <div class="lang-card java">
+      <span class="lang-icon">☕</span>
+      <div class="lang-name">Java</div>
+      <div class="lang-level">// LEARNING</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section-divider fade-up d4">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-title">About Me</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="about-grid fade-up d5">
+    <div class="about-card">
+      <div class="about-card-header">WHO AM I</div>
+      <div class="about-card-value">Just a beginner who believes <span style="color:var(--cyan)">coding is life</span>. Still unlocking new skills and leveling up every day. 🔥</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-header">PASSION</div>
+      <div class="about-card-value">Hardcore <span style="color:var(--purple)">anime lover</span> + aspiring dev. Watching, coding, creating — that's my loop. ∞</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-header">CONTENT</div>
+      <div class="about-card-value">Content creator on <a href="https://instagram.com/jikokoutei" target="_blank">Instagram @jikokoutei</a>. Follow for updates, dev logs & anime takes.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-header">SKILLS</div>
+      <div class="about-card-value"><span style="color:var(--amber, #ffaa00)">Project Management</span> · Problem Solving · Self-Learning · Hustle Mode: ON</div>
+    </div>
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="terminal-quote fade-up d5">
+    <div class="terminal-top">
+      <div class="t-dot"></div>
+      <div class="t-dot"></div>
+      <div class="t-dot"></div>
+    </div>
+    <div class="terminal-line"><span class="prompt">eren@jikokoutei:~$ </span><span class="cmd">cat philosophy.txt</span></div>
+    <div class="terminal-line" style="margin-top:10px;"><span class="val">"Every master was once a beginner.</span></div>
+    <div class="terminal-line"><span class="val"> Every legend was once unknown.</span></div>
+    <div class="terminal-line"><span class="val"> I'm at chapter 1 of my story — and the arc </span></div>
+    <div class="terminal-line"><span class="val"> is going to be legendary." </span><span class="str">— Eren</span></div>
+    <div class="terminal-line" style="margin-top:10px;"><span class="prompt">eren@jikokoutei:~$ </span><span class="out">_</span></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer fade-up d6">
+    <div class="footer-left">Built with <span>♥</span> & lots of anime breaks · jikokoutei</div>
+    <div class="footer-right">2025 · BEGINNER ARC</div>
+  </div>
+
+</div>
+
+<script>
+// MATRIX RAIN
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+let cols, drops;
+function initMatrix() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  cols = Math.floor(canvas.width / 18);
+  drops = Array(cols).fill(1);
+}
+initMatrix();
+window.addEventListener('resize', initMatrix);
+const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ01';
+function drawMatrix() {
+  ctx.fillStyle = 'rgba(2,4,8,0.05)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = '#00f5ff';
+  ctx.font = '14px Share Tech Mono, monospace';
+  drops.forEach((y,i) => {
+    const c = chars[Math.floor(Math.random()*chars.length)];
+    ctx.fillText(c, i*18, y*18);
+    if(y*18 > canvas.height && Math.random()>0.975) drops[i]=0;
+    drops[i]++;
+  });
+}
+setInterval(drawMatrix, 60);
+
+// TYPEWRITER
+const lines = [
+  'coding_is_life = True',
+  'anime_lover = True',
+  'role = "Content Creator"',
+  'level = "Beginner"',
+  'langs = ["Python","JS","HTML","C","C++","Java"]',
+  'goal = "Become Legendary"',
+];
+let li=0, ci=0, typing=true, delay=80;
+const tw = document.getElementById('typewriter');
+function type() {
+  if(typing) {
+    if(ci <= lines[li].length) {
+      tw.textContent = lines[li].slice(0,ci++);
+      setTimeout(type, delay);
+    } else {
+      typing=false;
+      setTimeout(type, 1800);
+    }
+  } else {
+    if(ci > 0) {
+      tw.textContent = lines[li].slice(0,--ci);
+      setTimeout(type, 35);
+    } else {
+      typing=true;
+      li = (li+1)%lines.length;
+      setTimeout(type, 400);
+    }
+  }
+}
+setTimeout(type, 800);
+</script>
 </body>
 </html>
