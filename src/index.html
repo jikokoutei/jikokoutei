@@ -329,7 +329,7 @@ footer a{color:var(--primary);text-decoration:none}
 <div class="container">
 <div class="reveal">
   <div class="slabel">05 · projects</div>
-  <h2>repos.</h2>
+  <h2>repos.filter(hasScreenshot)</h2>
   <div class="repos-grid" id="ss-repos">
     <div class="rload">
       <div style="color:var(--primary);margin-bottom:.5rem">$ scanning repos for SCREENSHOT.{png,jpg,jpeg}…</div>
@@ -562,7 +562,11 @@ async function loadRepos(){
   }
 
   // ── LATEST REPO ──
-  const latest = repos[0];
+  // Exclude the profile repo itself (github.com/<user>/<user>) — its README gets
+  // auto-committed by a GitHub Action, which otherwise makes it perpetually look
+  // like the "latest push" instead of an actual project.
+  const projectRepos = repos.filter(r => r.name.toLowerCase() !== GH.toLowerCase());
+  const latest = projectRepos[0] || repos[0];
   const updated = new Date(latest.updated_at).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
   document.getElementById('latest-wrap').innerHTML = `
     <div class="latest-card">
@@ -581,7 +585,7 @@ async function loadRepos(){
   // ── SCREENSHOT REPOS ──
   const grid = document.getElementById('ss-repos');
   const found = [];
-  for(const repo of repos.slice(0,9)){
+  for(const repo of projectRepos.slice(0,9)){
     const url = await checkScreenshot(repo.name);
     if(url) found.push({...repo, ssUrl: url});
   }
