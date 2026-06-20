@@ -86,11 +86,10 @@ class Eren:
 <br>
 
 [![GitHub Stats](https://github-readme-stats.vercel.app/api?username=jikokoutei&show_icons=true&theme=tokyonight&hide_border=true&title_color=00f5ff&icon_color=bf00ff&text_color=c8e6f5&bg_color=020408)](https://github.com/jikokoutei)
+
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jikokoutei&layout=compact&theme=tokyonight&hide_border=true&title_color=00f5ff&text_color=c8e6f5&bg_color=020408)](https://github.com/jikokoutei)
 
 [![GitHub Streak](https://streak-stats.demolab.com?user=jikokoutei&theme=tokyonight&hide_border=true&stroke=00f5ff&ring=bf00ff&fire=ff006e&background=020408&sideLabels=c8e6f5&dates=c8e6f5&currStreakNum=ffffff&sideNums=ffffff)](https://git.io/streak-stats)
-
-[![trophy](https://github-profile-trophy.vercel.app/?username=jikokoutei&theme=tokyonight&no-frame=true&row=1&column=6&title_color=00f5ff)](https://github.com/ryo-ma/github-profile-trophy)
 
 </details>
 
