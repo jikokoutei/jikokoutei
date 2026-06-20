@@ -138,15 +138,22 @@ class Eren:
 
 ---
 
-## 📦 `latest_repo()`
+## 📦 `latest_repos()`
 
-<!--LATEST_REPO_START-->
+<!--LATEST_REPOS_START-->
 **[boothsalgo](https://github.com/jikokoutei/boothsalgo)** `HTML`
 > _No description yet_
 ★ 0 · pushed 20 Jun 2026
-<!--LATEST_REPO_END-->
 
-<sub>auto-updates daily via GitHub Actions · see <code>.github/workflows/update-readme.yml</code></sub>
+**[wallpaper](https://github.com/jikokoutei/wallpaper)**
+> _No description yet_
+★ 0 · pushed 20 Jun 2026
+
+**[minimalista](https://github.com/jikokoutei/minimalista)** `JavaScript`
+> _No description yet_
+★ 0 · pushed 20 Jun 2026
+<!--LATEST_REPOS_END-->
+
 
 ---
 
