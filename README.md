@@ -143,7 +143,9 @@ class Eren:
 ## 📦 `latest_repo()`
 
 <!--LATEST_REPO_START-->
-
+**[boothsalgo](https://github.com/jikokoutei/boothsalgo)** `HTML`
+> _No description yet_
+★ 0 · pushed 20 Jun 2026
 <!--LATEST_REPO_END-->
 
 
