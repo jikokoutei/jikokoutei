@@ -7,35 +7,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --bg:        #020408;
-  --surface:   #080d14;
-  --surf2:     #0c1220;
-  --primary:   #00f5ff;
-  --secondary: #bf00ff;
-  --accent:    #ff006e;
-  --text:      #c8e6f5;
-  --muted:     #3d5a6e;
-  --border:    rgba(0,245,255,0.12);
+:root{
+  --bg:#020408;--surface:#080d14;--surf2:#0c1220;
+  --primary:#00f5ff;--secondary:#bf00ff;--accent:#ff006e;
+  --text:#c8e6f5;--muted:#3d5a6e;--border:rgba(0,245,255,0.12);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden}
 
-/* ── BOOT ── */
+/* BOOT */
 #boot{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;padding:2rem}
 .b-log{font-family:'Share Tech Mono',monospace;font-size:.8rem;max-width:600px;width:100%;line-height:1.9}
 .b-line{opacity:0;animation:bIn .08s forwards}
-.b-line.ok{color:#00ff88}
-.b-line.warn{color:var(--accent)}
-.b-line.dim{color:var(--muted)}
-.b-line.hi{color:var(--primary)}
+.b-line.ok{color:#00ff88}.b-line.warn{color:var(--accent)}.b-line.dim{color:var(--muted)}.b-line.hi{color:var(--primary)}
 @keyframes bIn{to{opacity:1}}
 
-/* ── CANVAS ── */
+/* CANVAS */
 #rain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035}
 
-/* ── NAV ── */
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(2,4,8,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;transform:translateY(-100%);transition:transform .4s}
 nav.on{transform:translateY(0)}
 .nav-logo{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--primary)}
@@ -44,21 +35,19 @@ nav.on{transform:translateY(0)}
 .nav-links a:hover{color:var(--primary)}
 @media(max-width:600px){.nav-links{display:none}}
 
-/* ── MAIN ── */
+/* LAYOUT */
 #main{display:none}
 .container{max-width:960px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1}
 section{padding:5rem 0}
-
-/* ── SECTION LABELS ── */
 .slabel{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--primary);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem;display:flex;align-items:center;gap:.7rem}
 .slabel::before{content:'//';color:var(--secondary);flex-shrink:0}
 .slabel::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
-h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.25rem,4vw,1.9rem);font-weight:700;color:var(--text);margin-bottom:2rem;text-transform:uppercase;letter-spacing:.05em}
+h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.25rem,4vw,1.9rem);font-weight:700;color:var(--text);margin-bottom:.6rem;text-transform:uppercase;letter-spacing:.05em}
 
-/* ── HERO ── */
+/* HERO */
 #hero{min-height:100vh;display:flex;align-items:center}
 .hero-badge{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--primary);letter-spacing:.14em;margin-bottom:1rem;display:flex;align-items:center;gap:.65rem}
-.dot-live{width:7px;height:7px;background:#00ff88;border-radius:50%;animation:blink 1.6s infinite;box-shadow:0 0 8px #00ff88}
+.dot-live{width:7px;height:7px;background:#00ff88;border-radius:50%;animation:blink 1.6s infinite;box-shadow:0 0 8px #00ff88;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 .hero-name{font-family:'Orbitron',sans-serif;font-size:clamp(3.5rem,13vw,9rem);font-weight:900;line-height:.9;background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 55%,var(--accent) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.5rem}
 .hero-alias{font-family:'Share Tech Mono',monospace;font-size:clamp(.9rem,2.5vw,1.4rem);color:var(--secondary);letter-spacing:.1em;margin-bottom:1.75rem}
@@ -77,18 +66,28 @@ h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.25rem,4vw,1.9rem);font-we
 .btn-lt{border:1px solid rgba(0,255,136,.25);color:#00ff88}
 .btn-lt:hover{border-color:#00ff88;box-shadow:0 0 12px rgba(0,255,136,.2);transform:translateY(-2px)}
 
-/* ── CODE BLOCK ── */
+/* ═══ TERMINAL (now section 02 — first interactive) ═══ */
+.term-hint{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--muted);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.term-hint::before{content:'▸';color:var(--primary)}
+.term-wrap{background:#010203;border:1px solid var(--border);box-shadow:0 0 50px rgba(0,245,255,.04)}
+.term-bar{background:var(--surf2);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border)}
+.td{width:10px;height:10px;border-radius:50%}
+.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
+.term-title{margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--muted)}
+.term-body{padding:1rem 1.25rem;font-family:'Share Tech Mono',monospace;font-size:.78rem;line-height:1.85;min-height:260px;max-height:440px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.tl{margin-bottom:.05rem}
+.tp{color:var(--primary)}.tc{color:var(--text)}.to{color:var(--muted)}.ts{color:#00ff88}.tw{color:var(--accent)}.ta{color:var(--secondary)}
+.term-in-row{display:flex;align-items:center;padding:.6rem 1.25rem 1rem;border-top:1px solid rgba(0,245,255,.07)}
+.term-prompt{font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--primary);white-space:nowrap;margin-right:.5rem}
+.term-in{background:transparent;border:none;outline:none;font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--text);flex:1;caret-color:var(--primary)}
+
+/* CODE BLOCK */
 .code-wrap{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--primary);position:relative}
 .code-file{position:absolute;top:0;right:0;font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--muted);padding:.3rem .75rem;background:rgba(0,0,0,.4);letter-spacing:.1em}
 pre.code{font-family:'Share Tech Mono',monospace;font-size:.8rem;line-height:1.85;color:var(--text);padding:1.6rem 1.5rem;overflow-x:auto;white-space:pre}
-.kw{color:var(--secondary)}
-.cls{color:#f0a05a}
-.str{color:#98d08a}
-.prop{color:var(--primary)}
-.fn{color:var(--accent)}
-.cmt{color:var(--muted);font-style:italic}
+.kw{color:var(--secondary)}.cls{color:#f0a05a}.str{color:#98d08a}.prop{color:var(--primary)}.fn{color:var(--accent)}.cmt{color:var(--muted);font-style:italic}
 
-/* ── SKILLS ── */
+/* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem}
 .skill{background:var(--surface);border:1px solid var(--border);padding:1.25rem 1rem;text-align:center;transition:all .22s;cursor:default;position:relative;overflow:hidden}
 .skill::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,245,255,.05),transparent);opacity:0;transition:.2s}
@@ -98,19 +97,21 @@ pre.code{font-family:'Share Tech Mono',monospace;font-size:.8rem;line-height:1.8
 .s-name{font-family:'Share Tech Mono',monospace;font-size:.72rem;color:var(--primary);letter-spacing:.07em;margin-bottom:.25rem}
 .s-st{font-family:'Share Tech Mono',monospace;font-size:.58rem;color:var(--muted);letter-spacing:.1em}
 
-/* ── STATS ── */
+/* STATS */
 .stats-pair{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:600px){.stats-pair{grid-template-columns:1fr}}
 .stat-img{width:100%;border:1px solid var(--border);display:block;background:var(--surface)}
 .stat-full{margin-bottom:1rem}
 .stat-full img,.trophy-img{width:100%;border:1px solid var(--border);display:block;background:var(--surface)}
 
-/* ── REPOS WITH SCREENSHOTS ── */
+/* SCREENSHOT REPOS */
 .repos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
 .rcard{background:var(--surface);border:1px solid var(--border);padding:1.25rem;transition:all .22s;position:relative;overflow:hidden}
 .rcard::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--secondary));opacity:0;transition:.2s}
 .rcard:hover{border-color:rgba(0,245,255,.28);transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,0,0,.5)}
 .rcard:hover::after{opacity:1}
+.rcard[data-new="true"]{border-color:rgba(0,255,136,.25)}
+.new-badge{position:absolute;top:.75rem;right:.75rem;font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.12em;padding:.2rem .55rem;background:rgba(0,255,136,.15);border:1px solid rgba(0,255,136,.4);color:#00ff88;text-transform:uppercase}
 .rscreenshot{width:100%;height:145px;object-fit:cover;border:1px solid var(--border);margin-bottom:1rem;background:var(--surf2);display:block}
 .rname{font-family:'Share Tech Mono',monospace;font-size:.85rem;color:var(--primary);margin-bottom:.4rem;display:flex;align-items:center;gap:.45rem}
 .rname a{color:inherit;text-decoration:none}
@@ -118,15 +119,18 @@ pre.code{font-family:'Share Tech Mono',monospace;font-size:.8rem;line-height:1.8
 .rdesc{font-size:.8rem;color:var(--muted);line-height:1.55;margin-bottom:.75rem}
 .rmeta{display:flex;align-items:center;gap:.6rem;font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--muted)}
 .ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.ldot.Python{background:#3776ab}
-.ldot.JavaScript,.ldot.TypeScript{background:#f7df1e}
-.ldot.HTML{background:#e34f26}
-.ldot.CSS{background:#1572b6}
-.ldot.C{background:#a8b9cc}
-.ldot.x{background:var(--muted)}
+.ldot.Python{background:#3776ab}.ldot.JavaScript,.ldot.TypeScript{background:#f7df1e}
+.ldot.HTML{background:#e34f26}.ldot.CSS{background:#1572b6}.ldot.C{background:#a8b9cc}.ldot.x{background:var(--muted)}
+
+/* SYNC INDICATOR */
+.sync-row{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem;font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--muted)}
+.sync-dot-anim{width:6px;height:6px;border-radius:50%;background:var(--primary);animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.sync-label{transition:color .3s}
+.sync-label.ok{color:#00ff88}
 .rload{font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--muted);padding:2.5rem;text-align:center;grid-column:1/-1}
 
-/* ── LATEST REPO ── */
+/* LATEST REPO */
 .latest-card{background:var(--surface);border:1px solid rgba(0,245,255,.22);padding:1.5rem 1.75rem;position:relative;overflow:hidden}
 .latest-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent))}
 .latest-badge{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem}
@@ -137,28 +141,10 @@ pre.code{font-family:'Share Tech Mono',monospace;font-size:.8rem;line-height:1.8
 .latest-meta{display:flex;flex-wrap:wrap;gap:1.25rem;font-family:'Share Tech Mono',monospace;font-size:.67rem;color:var(--muted)}
 .latest-meta span{display:flex;align-items:center;gap:.35rem}
 
-/* ── ACTIVITY ── */
+/* ACTIVITY */
 .act-img{width:100%;border:1px solid var(--border);display:block;background:var(--surface)}
 
-/* ── TERMINAL ── */
-.term-wrap{background:#010203;border:1px solid var(--border);box-shadow:0 0 50px rgba(0,245,255,.04)}
-.term-bar{background:var(--surf2);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border)}
-.td{width:10px;height:10px;border-radius:50%}
-.td.r{background:#ff5f56}.td.y{background:#ffbd2e}.td.g{background:#27c93f}
-.term-title{margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--muted)}
-.term-body{padding:1rem 1.25rem;font-family:'Share Tech Mono',monospace;font-size:.78rem;line-height:1.85;min-height:220px;max-height:420px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-.tl{margin-bottom:.05rem}
-.tp{color:var(--primary)}
-.tc{color:var(--text)}
-.to{color:var(--muted)}
-.ts{color:#00ff88}
-.tw{color:var(--accent)}
-.ta{color:var(--secondary)}
-.term-in-row{display:flex;align-items:center;padding:.5rem 1.25rem 1rem;border-top:1px solid rgba(0,245,255,.06)}
-.term-prompt{font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--primary);white-space:nowrap;margin-right:.5rem}
-.term-in{background:transparent;border:none;outline:none;font-family:'Share Tech Mono',monospace;font-size:.78rem;color:var(--text);flex:1;caret-color:var(--primary)}
-
-/* ── CONNECT ── */
+/* CONNECT */
 .connect-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem}
 .ccard{background:var(--surface);border:1px solid var(--border);padding:1.2rem 1.1rem;text-decoration:none;transition:all .22s;display:flex;align-items:center;gap:.9rem}
 .ccard:hover{transform:translateY(-4px)}
@@ -182,48 +168,49 @@ pre.code{font-family:'Share Tech Mono',monospace;font-size:.8rem;line-height:1.8
 .ccard.web:hover{border-color:var(--primary);box-shadow:0 8px 24px rgba(0,245,255,.12)}
 .ccard.web .cplat{color:var(--primary)}
 
-/* ── DONATE ── */
+/* DONATE */
 .donate-box{background:var(--surface);border:1px solid rgba(255,189,46,.25);padding:1.5rem 1.75rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
 .btc-lbl{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
 .btc-addr{font-family:'Share Tech Mono',monospace;font-size:.75rem;color:#ffbd2e;word-break:break-all}
 .btc-copy{font-family:'Share Tech Mono',monospace;font-size:.65rem;border:1px solid rgba(255,189,46,.3);color:#ffbd2e;background:transparent;padding:.3rem .75rem;cursor:pointer;transition:all .2s;letter-spacing:.08em}
 .btc-copy:hover{border-color:#ffbd2e;box-shadow:0 0 10px rgba(255,189,46,.25)}
-.btc-toast{position:fixed;bottom:2rem;right:2rem;background:#ffbd2e;color:#020408;font-family:'Share Tech Mono',monospace;font-size:.72rem;padding:.5rem 1rem;z-index:9999;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none}
-.btc-toast.show{opacity:1;transform:translateY(0)}
 
-/* ── FOOTER ── */
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;font-family:'Share Tech Mono',monospace;font-size:.72rem;padding:.55rem 1.1rem;z-index:9999;opacity:0;transform:translateY(8px);transition:all .35s;pointer-events:none}
+.toast.btc-t{background:#ffbd2e;color:#020408}
+.toast.repo-t{background:rgba(0,255,136,.15);border:1px solid rgba(0,255,136,.5);color:#00ff88}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* FOOTER */
 footer{border-top:1px solid var(--border);padding:2rem 0;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.1em}
 footer a{color:var(--primary);text-decoration:none}
 
-/* ── REVEAL ── */
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s,transform .55s}
 .reveal.vis{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
 
-<!-- ── BOOT SCREEN ── -->
-<div id="boot">
-  <div class="b-log" id="blog"></div>
-</div>
+<!-- BOOT -->
+<div id="boot"><div class="b-log" id="blog"></div></div>
 
-<!-- ── RAIN CANVAS ── -->
+<!-- RAIN -->
 <canvas id="rain"></canvas>
 
-<!-- ── NAV ── -->
+<!-- NAV -->
 <nav id="nav">
   <div class="nav-logo">eren@jikokoutei:~</div>
   <ul class="nav-links">
+    <li><a href="#terminal">terminal</a></li>
     <li><a href="#about">whoami</a></li>
     <li><a href="#skills">skills</a></li>
     <li><a href="#stats">stats</a></li>
     <li><a href="#projects">projects</a></li>
-    <li><a href="#terminal">terminal</a></li>
     <li><a href="#connect">connect</a></li>
   </ul>
 </nav>
 
-<!-- ── MAIN ── -->
 <div id="main">
 
 <!-- HERO -->
@@ -243,9 +230,32 @@ footer a{color:var(--primary);text-decoration:none}
   <div class="hero-btns">
     <a href="https://github.com/jikokoutei" target="_blank" class="btn btn-gh">⌥ GitHub</a>
     <a href="https://instagram.com/jik.okoutei" target="_blank" class="btn btn-ig">📸 @jik.okoutei</a>
-    <a href="https://instagram.com/ikiryospirit" target="_blank" class="btn btn-ig2">🌸 @ikiryospirit <span style="font-size:.55rem;color:rgba(255,0,110,.6)">[anime]</span></a>
+    <a href="https://instagram.com/ikiryospirit" target="_blank" class="btn btn-ig2">🌸 @ikiryospirit <span style="font-size:.55rem;opacity:.6">[anime]</span></a>
     <a href="https://linktr.ee/ikiryospirit" target="_blank" class="btn btn-lt">⛩ Linktree</a>
   </div>
+</div>
+</section>
+
+<!-- ═══ TERMINAL — SECTION 02 (first after hero) ═══ -->
+<section id="terminal">
+<div class="container">
+<div class="reveal">
+  <div class="slabel">01 · terminal</div>
+  <h2>bash</h2>
+  <p class="term-hint">Interactive shell — type <code style="color:var(--primary)">help</code> and press Enter to get started</p>
+  <div class="term-wrap">
+    <div class="term-bar">
+      <span class="td r"></span><span class="td y"></span><span class="td g"></span>
+      <span class="term-title">eren@jikokoutei:~ — bash</span>
+    </div>
+    <div class="term-body" id="tbody"></div>
+    <div class="term-in-row">
+      <span class="term-prompt">eren@jikokoutei:~$&nbsp;</span>
+      <input type="text" class="term-in" id="tin"
+             placeholder="type a command…" autocomplete="off" spellcheck="false" autofocus/>
+    </div>
+  </div>
+</div>
 </div>
 </section>
 
@@ -253,7 +263,7 @@ footer a{color:var(--primary);text-decoration:none}
 <section id="about">
 <div class="container">
 <div class="reveal">
-  <div class="slabel">01 · who am i</div>
+  <div class="slabel">02 · who am i</div>
   <h2>whoami</h2>
   <div class="code-wrap">
     <span class="code-file">eren.py</span>
@@ -278,7 +288,7 @@ footer a{color:var(--primary);text-decoration:none}
 <section id="skills">
 <div class="container">
 <div class="reveal">
-  <div class="slabel">02 · languages</div>
+  <div class="slabel">03 · languages</div>
   <h2>languages[]</h2>
   <div class="skills-grid">
     <div class="skill"><div class="s-icon">🐍</div><div class="s-name">Python</div><div class="s-st">// LEARNING</div></div>
@@ -296,7 +306,7 @@ footer a{color:var(--primary);text-decoration:none}
 <section id="stats">
 <div class="container">
 <div class="reveal">
-  <div class="slabel">03 · github stats</div>
+  <div class="slabel">04 · github stats</div>
   <h2>stats()</h2>
   <div class="stats-pair">
     <img class="stat-img" loading="lazy" alt="GitHub Stats"
@@ -316,7 +326,7 @@ footer a{color:var(--primary);text-decoration:none}
 <section id="trophies">
 <div class="container">
 <div class="reveal">
-  <div class="slabel">04 · achievements</div>
+  <div class="slabel">05 · achievements</div>
   <h2>trophy()</h2>
   <img class="trophy-img" loading="lazy" alt="GitHub Trophies"
     src="https://github-profile-trophy.vercel.app/?username=jikokoutei&theme=onedark&no-frame=true&row=1&column=6"/>
@@ -328,12 +338,16 @@ footer a{color:var(--primary);text-decoration:none}
 <section id="projects">
 <div class="container">
 <div class="reveal">
-  <div class="slabel">05 · projects</div>
+  <div class="slabel">06 · projects</div>
   <h2>repos.filter(hasScreenshot)</h2>
+  <!-- sync status bar -->
+  <div class="sync-row" id="sync-row" style="display:none">
+    <span class="sync-dot-anim" id="sync-dot"></span>
+    <span class="sync-label" id="sync-label">syncing with GitHub…</span>
+  </div>
   <div class="repos-grid" id="ss-repos">
     <div class="rload">
-      <div style="color:var(--primary);margin-bottom:.5rem">$ scanning repos for SCREENSHOT.{png,jpg,jpeg}…</div>
-      <div style="color:var(--muted);font-size:.7rem">checking github.com/jikokoutei</div>
+      <div style="color:var(--primary);margin-bottom:.5rem">$ loading projects…</div>
     </div>
   </div>
 </div>
@@ -344,7 +358,7 @@ footer a{color:var(--primary);text-decoration:none}
 <section id="latest">
 <div class="container">
 <div class="reveal">
-  <div class="slabel">06 · latest push</div>
+  <div class="slabel">07 · latest push</div>
   <h2>git log --latest</h2>
   <div id="latest-wrap">
     <div class="rload">$ fetching latest commit…</div>
@@ -357,33 +371,10 @@ footer a{color:var(--primary);text-decoration:none}
 <section id="activity">
 <div class="container">
 <div class="reveal">
-  <div class="slabel">07 · activity</div>
+  <div class="slabel">08 · activity</div>
   <h2>activity_graph()</h2>
   <img class="act-img" loading="lazy" alt="Activity Graph"
     src="https://github-readme-activity-graph.vercel.app/graph?username=jikokoutei&bg_color=080d14&color=00f5ff&line=bf00ff&point=ff006e&area=true&hide_border=true"/>
-</div>
-</div>
-</section>
-
-<!-- TERMINAL -->
-<section id="terminal">
-<div class="container">
-<div class="reveal">
-  <div class="slabel">08 · interactive terminal</div>
-  <h2>bash</h2>
-  <div class="term-wrap">
-    <div class="term-bar">
-      <span class="td r"></span>
-      <span class="td y"></span>
-      <span class="td g"></span>
-      <span class="term-title">eren@jikokoutei:~</span>
-    </div>
-    <div class="term-body" id="tbody"></div>
-    <div class="term-in-row">
-      <span class="term-prompt">eren@jikokoutei:~$ </span>
-      <input type="text" class="term-in" id="tin" placeholder="type 'help' and press Enter…" autocomplete="off" spellcheck="false"/>
-    </div>
-  </div>
 </div>
 </div>
 </section>
@@ -439,7 +430,6 @@ footer a{color:var(--primary);text-decoration:none}
 </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <p>Built with ♥ &amp; lots of anime breaks · <a href="https://github.com/jikokoutei">@jikokoutei</a></p>
@@ -449,196 +439,319 @@ footer a{color:var(--primary);text-decoration:none}
 
 </div><!-- /main -->
 
-<div class="btc-toast" id="btc-toast">✓ Address copied!</div>
+<!-- TOASTS -->
+<div class="toast btc-t" id="btc-toast">✓ Address copied!</div>
+<div class="toast repo-t" id="repo-toast"></div>
 
 <script>
-// ════════════════════════════════
-// BOOT SEQUENCE
-// ════════════════════════════════
-const BOOT = [
-  {t:'BIOS v2.4.1 — jikokoutei kernel initializing…', ms:0,   c:''},
-  {t:'> Mounting filesystem…',                         ms:280, c:''},
-  {t:'> Loading profile: eren@jikokoutei ✓',          ms:560, c:'ok'},
-  {t:'> Scanning GitHub [9 repositories found]',      ms:840, c:'hi'},
-  {t:'> Verifying identity…                   [OK]',  ms:1050,c:'ok'},
-  {t:'> Language stack: Python JS HTML C C++ Java',   ms:1250,c:''},
-  {t:'> Mounting social links:',                       ms:1500,c:'dim'},
-  {t:'  ↳ instagram/main  : @jik.okoutei',            ms:1650,c:''},
-  {t:'  ↳ instagram/anime : @ikiryospirit',           ms:1800,c:''},
-  {t:'  ↳ linktree        : ikiryospirit',            ms:1950,c:'dim'},
-  {t:'> Current arc  : BEGINNER ARC — Chapter 01 🔰', ms:2150,c:'warn'},
-  {t:'> XP           : 18%   Level: 01',              ms:2350,c:'dim'},
-  {t:'> All systems nominal.',                         ms:2600,c:'ok'},
-  {t:'> Launching portfolio UI…',                      ms:2900,c:''},
+// ══════════════════════════════════════════
+// BOOT
+// ══════════════════════════════════════════
+const BOOT=[
+  {t:'BIOS v2.4.1 — jikokoutei kernel initializing…',ms:0,   c:''},
+  {t:'> Mounting filesystem…',                         ms:250, c:''},
+  {t:'> Loading profile: eren@jikokoutei ✓',          ms:480, c:'ok'},
+  {t:'> GitHub repos detected [9 found]',             ms:700, c:'hi'},
+  {t:'> Checking screenshot cache…',                   ms:900, c:'dim'},
+  {t:'> Language stack: Python · JS · HTML · C · C++ · Java', ms:1080,c:''},
+  {t:'> Mounting social links:',                       ms:1280,c:'dim'},
+  {t:'  ↳ instagram/main  : @jik.okoutei',            ms:1420,c:''},
+  {t:'  ↳ instagram/anime : @ikiryospirit',           ms:1560,c:''},
+  {t:'> Current arc : BEGINNER ARC — Chapter 01 🔰',  ms:1780,c:'warn'},
+  {t:'> All systems nominal.',                         ms:2000,c:'ok'},
+  {t:'> Launching…',                                   ms:2200,c:''},
 ];
-
-const blog = document.getElementById('blog');
-BOOT.forEach(({t,ms,c}) => {
-  setTimeout(()=>{
-    const d = document.createElement('div');
-    d.className = 'b-line' + (c ? ' '+c : '');
-    d.textContent = t;
-    blog.appendChild(d);
-  }, ms);
-});
+const blog=document.getElementById('blog');
+BOOT.forEach(({t,ms,c})=>setTimeout(()=>{
+  const d=document.createElement('div');
+  d.className='b-line'+(c?' '+c:'');
+  d.textContent=t;
+  blog.appendChild(d);
+},ms));
 setTimeout(()=>{
-  const b = document.getElementById('boot');
-  b.style.transition = 'opacity .65s';
-  b.style.opacity = '0';
-  setTimeout(()=>{
-    b.style.display = 'none';
-    document.getElementById('main').style.display = 'block';
-    initAll();
-  }, 650);
-}, 3500);
+  const b=document.getElementById('boot');
+  b.style.transition='opacity .6s';
+  b.style.opacity='0';
+  setTimeout(()=>{b.style.display='none';document.getElementById('main').style.display='block';initAll();},600);
+},2800);
 
-// ════════════════════════════════
+// ══════════════════════════════════════════
 // MATRIX RAIN
-// ════════════════════════════════
+// ══════════════════════════════════════════
 function initRain(){
-  const cv = document.getElementById('rain');
-  const cx = cv.getContext('2d');
-  function resize(){ cv.width=innerWidth; cv.height=innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  const CH = 'アイウエオカキクケコサシスセソタチツテトナニヌネノ01';
-  const SZ = 13;
-  let cols = Math.floor(innerWidth/SZ);
-  let drops = Array.from({length:cols},()=>Math.random()*innerHeight/SZ);
+  const cv=document.getElementById('rain'),cx=cv.getContext('2d');
+  const resize=()=>{cv.width=innerWidth;cv.height=innerHeight;};
+  resize();window.addEventListener('resize',resize);
+  const CH='アイウエオカキクケコサシスセソタチツ01';
+  const SZ=13;
+  let drops=Array.from({length:Math.floor(innerWidth/SZ)},()=>Math.random()*50);
   setInterval(()=>{
-    cx.fillStyle='rgba(2,4,8,.07)';
-    cx.fillRect(0,0,cv.width,cv.height);
-    cx.fillStyle='#00f5ff';
-    cx.font=`${SZ}px 'Share Tech Mono',monospace`;
-    cols = Math.floor(cv.width/SZ);
-    if(drops.length < cols) drops.push(...Array.from({length:cols-drops.length},()=>0));
+    cx.fillStyle='rgba(2,4,8,.07)';cx.fillRect(0,0,cv.width,cv.height);
+    cx.fillStyle='#00f5ff';cx.font=`${SZ}px monospace`;
+    const cols=Math.floor(cv.width/SZ);
+    while(drops.length<cols)drops.push(0);
     for(let i=0;i<cols;i++){
-      const ch = CH[Math.floor(Math.random()*CH.length)];
-      cx.fillText(ch, i*SZ, drops[i]*SZ);
-      if(drops[i]*SZ > cv.height && Math.random()>.975) drops[i]=0;
-      drops[i] += .4;
+      cx.fillText(CH[Math.floor(Math.random()*CH.length)],i*SZ,drops[i]*SZ);
+      if(drops[i]*SZ>cv.height&&Math.random()>.975)drops[i]=0;
+      drops[i]+=.4;
     }
-  }, 55);
+  },55);
 }
 
-// ════════════════════════════════
-// GITHUB API
-// ════════════════════════════════
-const GH = 'jikokoutei';
+// ══════════════════════════════════════════
+// LOCALSTORAGE CACHE
+//   Key:  jiko_ss_repos_v2
+//   Data: { lastFullScan, lastCheck, repos:[] }
+//   Full rescan every 7 days; incremental on each visit
+// ══════════════════════════════════════════
+const CACHE_KEY='jiko_ss_repos_v2';
+const FULL_SCAN_MS=7*24*60*60*1000; // 7 days
 
+function getCache(){
+  try{const r=localStorage.getItem(CACHE_KEY);return r?JSON.parse(r):null;}
+  catch{return null;}
+}
+function setCache(data){
+  try{localStorage.setItem(CACHE_KEY,JSON.stringify(data));}
+  catch{}
+}
+function pruneFromCache(name){
+  const c=getCache();if(!c)return;
+  c.repos=c.repos.filter(r=>r.name!==name);
+  setCache(c);
+}
+
+// ══════════════════════════════════════════
+// GITHUB API
+// ══════════════════════════════════════════
+const GH='jikokoutei';
 async function ghFetch(url){
-  const r = await fetch(url);
-  if(!r.ok) throw new Error(`${r.status}`);
+  const r=await fetch(url);
+  if(!r.ok)throw new Error(r.status);
   return r.json();
 }
 
-function langDot(lang){
-  return `<span class="ldot ${lang||'x'}"></span>`;
-}
-
-async function checkScreenshot(repo){
-  const exts = ['png','PNG','jpg','JPG','jpeg','JPEG'];
-  for(const e of exts){
+// Check one repo for SCREENSHOT.{png,PNG,jpg,JPG,jpeg,JPEG}
+async function checkScreenshot(repoName){
+  for(const e of['png','PNG','jpg','JPG','jpeg','JPEG']){
     try{
-      const r = await fetch(`https://api.github.com/repos/${GH}/${repo}/contents/SCREENSHOT.${e}`);
-      if(r.ok){
-        const d = await r.json();
-        return d.download_url;
-      }
+      const r=await fetch(`https://api.github.com/repos/${GH}/${repoName}/contents/SCREENSHOT.${e}`);
+      if(r.ok){const d=await r.json();return d.download_url;}
     }catch{}
   }
   return null;
 }
 
-async function loadRepos(){
-  let repos;
-  try{ repos = await ghFetch(`https://api.github.com/users/${GH}/repos?sort=updated&per_page=30`); }
-  catch{
-    document.getElementById('ss-repos').innerHTML =
-      `<div class="rload">// GitHub API rate limited — repos at <a href="https://github.com/${GH}" style="color:var(--primary)" target="_blank">github.com/${GH}</a></div>`;
-    document.getElementById('latest-wrap').innerHTML =
-      `<div class="rload">// Try again shortly for live data</div>`;
-    return;
-  }
+function langDot(lang){return`<span class="ldot ${lang||'x'}"></span>`;}
 
-  // ── LATEST REPO ──
-  const latest = repos[0];
-  const updated = new Date(latest.updated_at).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
-  document.getElementById('latest-wrap').innerHTML = `
-    <div class="latest-card">
-      <div class="latest-badge">▶ MOST RECENTLY UPDATED</div>
-      <div class="latest-name"><a href="${latest.html_url}" target="_blank">${latest.name}</a></div>
-      <div class="latest-desc">${latest.description||'No description provided.'}</div>
-      <div class="latest-meta">
-        <span>${langDot(latest.language)} ${latest.language||'Unknown'}</span>
-        <span>★ ${latest.stargazers_count} stars</span>
-        <span>⎇ ${latest.forks_count} forks</span>
-        <span>📅 ${updated}</span>
-        <span><a href="${latest.html_url}" style="color:var(--primary);text-decoration:none" target="_blank">→ view repo</a></span>
-      </div>
+// ══════════════════════════════════════════
+// RENDER REPOS
+// ══════════════════════════════════════════
+function renderRepos(repos,newNames=new Set()){
+  const grid=document.getElementById('ss-repos');
+  if(!repos.length){
+    grid.innerHTML=`<div class="rload">
+      <div style="color:var(--muted);margin-bottom:.75rem">// No repos with SCREENSHOT.png/jpg/jpeg yet</div>
+      <div style="font-size:.68rem;color:#2a4a5a">Add <span style="color:var(--primary)">SCREENSHOT.png</span> to any repo root → it auto-appears here ✦</div>
     </div>`;
-
-  // ── SCREENSHOT REPOS ──
-  const grid = document.getElementById('ss-repos');
-  const found = [];
-  for(const repo of repos.slice(0,9)){
-    const url = await checkScreenshot(repo.name);
-    if(url) found.push({...repo, ssUrl: url});
-  }
-
-  if(!found.length){
-    grid.innerHTML = `
-      <div class="rload">
-        <div style="color:var(--muted);margin-bottom:.75rem">// No repos with SCREENSHOT.png/jpg/jpeg found yet</div>
-        <div style="font-size:.68rem;color:#2a4a5a">Add a file named <span style="color:var(--primary)">SCREENSHOT.png</span> to any repo root to feature it here ✦</div>
-      </div>`;
     return;
   }
-
-  grid.innerHTML = found.map(r=>`
-    <div class="rcard">
-      <img class="rscreenshot" src="${r.ssUrl}" alt="${r.name} screenshot" loading="lazy" onerror="this.style.display='none'"/>
+  grid.innerHTML=repos.map(r=>`
+    <div class="rcard" data-repo="${r.name}" ${newNames.has(r.name)?'data-new="true"':''}>
+      ${newNames.has(r.name)?'<span class="new-badge">NEW ✦</span>':''}
+      <img class="rscreenshot" src="${r.ssUrl}" alt="${r.name}"
+           loading="lazy"
+           onerror="handleImgErr(this,'${r.name}')"/>
       <div class="rname">◆ <a href="${r.html_url}" target="_blank">${r.name}</a></div>
       <div class="rdesc">${r.description||'No description provided.'}</div>
       <div class="rmeta">
-        ${langDot(r.language)} ${r.language||'Unknown'}
+        ${langDot(r.language)}&nbsp;${r.language||'Unknown'}
         <span style="margin-left:auto">★ ${r.stargazers_count}</span>
       </div>
     </div>`).join('');
 }
 
-// ════════════════════════════════
+// If screenshot image 404s → remove card + purge from cache
+function handleImgErr(img,name){
+  const card=img.closest('.rcard');
+  if(card){card.style.transition='opacity .4s';card.style.opacity='0';setTimeout(()=>card.remove(),400);}
+  pruneFromCache(name);
+}
+
+// ══════════════════════════════════════════
+// SYNC STATUS UI
+// ══════════════════════════════════════════
+function showSync(msg){
+  const row=document.getElementById('sync-row');
+  document.getElementById('sync-label').textContent=msg;
+  document.getElementById('sync-label').className='sync-label';
+  document.getElementById('sync-dot').style.display='inline-block';
+  row.style.display='flex';
+}
+function syncDone(msg){
+  const lbl=document.getElementById('sync-label');
+  lbl.textContent=msg;
+  lbl.className='sync-label ok';
+  document.getElementById('sync-dot').style.display='none';
+  setTimeout(()=>{document.getElementById('sync-row').style.display='none';},3500);
+}
+
+// ══════════════════════════════════════════
+// MAIN REPO LOADER — cache-first + incremental
+// ══════════════════════════════════════════
+async function loadRepos(){
+  const cache=getCache();
+  const now=Date.now();
+  const needFullScan=!cache||(now-(cache.lastFullScan||0))>FULL_SCAN_MS;
+
+  // ── Step 1: show cached repos instantly ──
+  if(cache&&cache.repos&&cache.repos.length>0){
+    renderRepos(cache.repos);
+    showSync(needFullScan?'running weekly rescan…':'checking for new repos…');
+  } else {
+    showSync('scanning repositories…');
+  }
+
+  // ── Step 2: fetch all repos ──
+  let allRepos;
+  try{ allRepos=await ghFetch(`https://api.github.com/users/${GH}/repos?sort=updated&per_page=30`); }
+  catch(e){
+    if(!cache||!cache.repos.length){
+      document.getElementById('ss-repos').innerHTML=
+        `<div class="rload">// GitHub API rate limited — try again shortly or visit
+         <a href="https://github.com/${GH}" style="color:var(--primary)" target="_blank">github.com/${GH}</a></div>`;
+    }
+    syncDone('using cached data');
+    return;
+  }
+
+  // ── Step 3: update latest repo (always fresh) ──
+  renderLatest(allRepos[0]);
+
+  // ── Step 4: decide which repos to check ──
+  const existing=cache?cache.repos:[];
+  const existingNames=new Set(existing.map(r=>r.name));
+
+  let toCheck;
+  if(needFullScan){
+    // Full rescan: check all repos (handles deletions + new ones)
+    toCheck=allRepos;
+  } else {
+    // Incremental: only check repos not already in cache
+    toCheck=allRepos.filter(r=>!existingNames.has(r.name));
+  }
+
+  // ── Step 5: find SCREENSHOT files ──
+  const found=[];
+  for(const repo of toCheck.slice(0,30)){
+    const ssUrl=await checkScreenshot(repo.name);
+    if(ssUrl) found.push({
+      name:repo.name,
+      html_url:repo.html_url,
+      description:repo.description,
+      language:repo.language,
+      stargazers_count:repo.stargazers_count,
+      forks_count:repo.forks_count,
+      updated_at:repo.updated_at,
+      ssUrl,
+      addedAt:now
+    });
+  }
+
+  // ── Step 6: build final list ──
+  let finalRepos;
+  const newNames=new Set(found.map(r=>r.name));
+
+  if(needFullScan){
+    // Replace cache entirely
+    finalRepos=found;
+  } else {
+    // Merge: refresh metadata for existing, append genuinely new
+    const refreshed=existing.map(er=>{
+      const fresh=allRepos.find(r=>r.name===er.name);
+      return fresh?{...er,stargazers_count:fresh.stargazers_count,forks_count:fresh.forks_count,updated_at:fresh.updated_at}:er;
+    });
+    finalRepos=[...refreshed,...found];
+  }
+
+  // ── Step 7: save to localStorage ──
+  setCache({
+    lastFullScan:needFullScan?now:(cache?.lastFullScan||0),
+    lastCheck:now,
+    repos:finalRepos
+  });
+
+  // ── Step 8: update display ──
+  renderRepos(finalRepos,newNames);
+
+  if(found.length>0&&!needFullScan){
+    // New repos found — toast notification
+    const t=document.getElementById('repo-toast');
+    t.textContent=`✦ ${found.length} new project${found.length>1?'s':''} added!`;
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),3500);
+    syncDone(`✓ ${found.length} new project${found.length>1?'s':''} added`);
+  } else if(needFullScan){
+    syncDone(finalRepos.length?`✓ ${finalRepos.length} project${finalRepos.length!==1?'s':''} indexed`:'✓ scan complete — add SCREENSHOT.png to feature a project');
+  } else {
+    syncDone(toCheck.length?'✓ up to date':'✓ all repos already indexed');
+  }
+}
+
+// ── Latest repo card ──
+function renderLatest(r){
+  if(!r)return;
+  const upd=new Date(r.updated_at).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+  document.getElementById('latest-wrap').innerHTML=`
+    <div class="latest-card">
+      <div class="latest-badge">▶ MOST RECENTLY UPDATED</div>
+      <div class="latest-name"><a href="${r.html_url}" target="_blank">${r.name}</a></div>
+      <div class="latest-desc">${r.description||'No description provided.'}</div>
+      <div class="latest-meta">
+        <span>${langDot(r.language)}&nbsp;${r.language||'Unknown'}</span>
+        <span>★ ${r.stargazers_count}</span>
+        <span>⎇ ${r.forks_count} forks</span>
+        <span>📅 ${upd}</span>
+        <span><a href="${r.html_url}" style="color:var(--primary);text-decoration:none" target="_blank">→ view repo</a></span>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════
 // INTERACTIVE TERMINAL
-// ════════════════════════════════
-const CMDS = {
-  help: ()=>[
-    `<span class="ta">Available commands:</span>`,
+// ══════════════════════════════════════════
+const CMDS={
+  help:()=>[
+    `<span class="ta">── Available commands ──────────────────</span>`,
     `  <span class="ta">whoami</span>   — profile info`,
     `  <span class="ta">ls</span>       — list repos`,
     `  <span class="ta">skills</span>   — language stack`,
     `  <span class="ta">anime</span>    — top anime + anime IG`,
     `  <span class="ta">connect</span>  — social links`,
-    `  <span class="ta">neofetch</span> — system info`,
-    `  <span class="ta">motto</span>    — philosophy`,
+    `  <span class="ta">neofetch</span> — system overview`,
+    `  <span class="ta">motto</span>    — life philosophy`,
     `  <span class="ta">arc</span>      — current arc status`,
     `  <span class="ta">clear</span>    — clear terminal`,
+    `<span class="to">────────────────────────────────────────</span>`,
   ],
-  whoami: ()=>[
+  whoami:()=>[
     `<span class="tp">Eren</span> / <span class="ta">@jikokoutei</span>`,
     `  Role     : Content Creator · Aspiring Developer · Project Manager`,
     `  Status   : <span class="tw">Beginner Arc — Chapter 01 🔰</span>`,
     `  Passion  : Coding · Anime · Creating Content`,
     `  Level    : 01    XP: 18%`,
+    `  Main IG  : <span class="ta">@jik.okoutei</span>`,
+    `  Anime IG : <span class="tw">@ikiryospirit</span> 🌸`,
   ],
-  ls: ()=>[
-    `<span class="tp">repos/</span>`,
+  ls:()=>[
+    `<span class="tp">repos/ (9 total)</span>`,
     `  <span class="ta">jikokoutei</span>   [HTML]  — profile README`,
-    `  <span class="ta">minimalista</span>  [JS]    — new-tab browser workspace extension`,
-    `  <span class="ta">My-Media</span>     [Py]    — YouTube premium audio toolkit`,
+    `  <span class="ta">minimalista</span>  [JS]    — new-tab workspace extension`,
+    `  <span class="ta">My-Media</span>     [Py]    — YouTube audio toolkit`,
     `  <span class="ta">Search_Bar</span>   [Py]    — floating desktop search bar`,
-    `  <span class="to">+ 5 more…  →  github.com/jikokoutei</span>`,
+    `  <span class="to">+ 5 more →  github.com/jikokoutei</span>`,
   ],
-  skills: ()=>[
+  skills:()=>[
     `<span class="tp">languages[]</span> = {`,
     `  🐍 <span class="ta">Python</span>      — learning`,
     `  ⚡ <span class="ta">JavaScript</span>  — learning`,
@@ -648,15 +761,16 @@ const CMDS = {
     `  ☕ <span class="ta">Java</span>        — learning`,
     `}`,
   ],
-  anime: ()=>[
+  anime:()=>[
     `<span class="tp">top_anime.txt</span>`,
     `  1. Attack on Titan  — <span class="tw">this hits different 🔥</span>`,
     `  2. Demon Slayer     — breathtaking animation`,
     `  3. Jujutsu Kaisen   — cursed energy = coding energy`,
     ``,
-    `  <span class="ta">Anime content →</span> <span class="tw">@ikiryospirit</span> on Instagram 🌸`,
+    `  Anime content on <span class="tw">@ikiryospirit</span> 🌸`,
+    `  → instagram.com/ikiryospirit`,
   ],
-  connect: ()=>[
+  connect:()=>[
     `<span class="tp">links[]</span> = [`,
     `  🐙 GitHub       → <span class="ta">github.com/jikokoutei</span>`,
     `  📸 Instagram    → <span class="ta">instagram.com/jik.okoutei</span>`,
@@ -665,17 +779,17 @@ const CMDS = {
     `  🌐 Portfolio    → <span class="ta">jikokoutei.pages.dev</span>`,
     `]`,
   ],
-  neofetch: ()=>[
+  neofetch:()=>[
     `<span class="tp">     ██████████</span>   <span class="tp">eren</span>@<span class="ta">jikokoutei</span>`,
-    `<span class="tp">   ██░░░░░░░░██</span>   ──────────────────`,
-    `<span class="tp">  ██░░░░░░░░░░██</span>  OS:         Beginner Arc v1.0`,
-    `<span class="ta">  ████████████████</span> Shell:      bash`,
-    `<span class="ta">  ████████████████</span> Repos:      9 (and growing)`,
-    `<span class="tw">  ██░░░░░░░░░░██</span>  Theme:      TokyoNight / OneDark`,
-    `<span class="tw">   ██░░░░░░░░██</span>   Anime list: AoT · Demon Slayer · JJK`,
-    `<span class="tw">     ██████████</span>   Anime IG:   @ikiryospirit 🌸`,
+    `<span class="tp">   ██░░░░░░░░██</span>   ────────────────────`,
+    `<span class="tp">  ██░░░░░░░░░░██</span>  OS:       Beginner Arc v1.0`,
+    `<span class="ta">  ████████████████</span> Shell:    bash`,
+    `<span class="ta">  ████████████████</span> Repos:    9 (and growing)`,
+    `<span class="tw">  ██░░░░░░░░░░██</span>  Theme:    OneDark / TokyoNight`,
+    `<span class="tw">   ██░░░░░░░░██</span>   Main IG:  @jik.okoutei`,
+    `<span class="tw">     ██████████</span>   Anime IG: @ikiryospirit 🌸`,
   ],
-  motto: ()=>[
+  motto:()=>[
     `<span class="tp">cat philosophy.txt</span>`,
     ``,
     `  <span class="to">"Every master was once a beginner.</span>`,
@@ -683,39 +797,36 @@ const CMDS = {
     `  <span class="to"> I'm at chapter 1 of my story —</span>`,
     `  <span class="to"> and the arc is going to be legendary."</span>`,
     ``,
-    `              — Eren / @jikokoutei`,
+    `               — Eren / @jikokoutei`,
   ],
-  arc: ()=>[
-    `<span class="tw">╔══════════════════════════════╗</span>`,
-    `<span class="tw">║  BEGINNER ARC — Chapter 01   ║</span>`,
-    `<span class="tw">╚══════════════════════════════╝</span>`,
+  arc:()=>[
+    `<span class="tw">╔═══════════════════════════════╗</span>`,
+    `<span class="tw">║   BEGINNER ARC — Chapter 01   ║</span>`,
+    `<span class="tw">╚═══════════════════════════════╝</span>`,
     ``,
-    `  Level    : 01 / ??`,
-    `  XP       : ████░░░░░░░░░░░░  18%`,
-    `  Goal     : <span class="ta">Become Legendary</span>`,
-    `  Method   : Grind · Learn · Ship · Repeat`,
+    `  Level  : 01 / ??`,
+    `  XP     : <span class="tp">████</span>░░░░░░░░░░░░░░  18%`,
+    `  Goal   : <span class="ta">Become Legendary</span>`,
+    `  Method : Grind → Learn → Ship → Repeat`,
     ``,
     `  <span class="ts">status: IN PROGRESS…</span>`,
   ],
-  clear: ()=>null,
+  clear:()=>null,
 };
 
-let hist=[], hIdx=-1;
+let hist=[],hIdx=-1;
 function tAppend(html){
   const b=document.getElementById('tbody');
-  const d=document.createElement('div');
-  d.className='tl';
-  d.innerHTML=html;
-  b.appendChild(d);
-  b.scrollTop=b.scrollHeight;
+  const d=document.createElement('div');d.className='tl';d.innerHTML=html;
+  b.appendChild(d);b.scrollTop=b.scrollHeight;
 }
 function tRun(cmd){
   const t=cmd.trim().toLowerCase();
-  if(!t) return;
-  hist.unshift(cmd); hIdx=-1;
-  tAppend(`<span class="tp">eren@jikokoutei:~$ </span><span class="tc">${cmd}</span>`);
+  if(!t)return;
+  hist.unshift(cmd);hIdx=-1;
+  tAppend(`<span class="tp">eren@jikokoutei:~$&nbsp;</span><span class="tc">${cmd}</span>`);
   if(CMDS[t]){
-    if(t==='clear'){ document.getElementById('tbody').innerHTML=''; return; }
+    if(t==='clear'){document.getElementById('tbody').innerHTML='';return;}
     CMDS[t]().forEach(l=>tAppend(`<span class="to">${l}</span>`));
     tAppend('');
   } else {
@@ -724,50 +835,60 @@ function tRun(cmd){
   }
 }
 function initTerminal(){
-  tAppend(`<span class="ts">✦ jikokoutei terminal — Beginner Arc 🔰</span>`);
-  tAppend(`<span class="to">Type <span class="ta">help</span> for available commands.</span>`);
-  tAppend('');
+  // Greet & auto-run a demo sequence so user sees it's alive
+  const seq=[
+    {html:`<span class="ts">✦ jikokoutei terminal — Beginner Arc 🔰</span>`,delay:0},
+    {html:`<span class="to">Type <span class="ta">help</span> to see all commands. Use ↑↓ for history.</span>`,delay:0},
+    {html:'',delay:0},
+    // auto-run whoami after a moment so it looks alive
+    {html:`<span class="tp">eren@jikokoutei:~$&nbsp;</span><span class="tc">whoami</span>`,delay:600},
+  ];
+  seq.forEach(({html,delay})=>setTimeout(()=>tAppend(html),delay));
+  setTimeout(()=>{
+    CMDS.whoami().forEach(l=>tAppend(`<span class="to">${l}</span>`));
+    tAppend('');
+  },700);
+
   const inp=document.getElementById('tin');
   inp.addEventListener('keydown',e=>{
-    if(e.key==='Enter'){ tRun(inp.value); inp.value=''; }
-    else if(e.key==='ArrowUp'){ e.preventDefault(); if(hIdx<hist.length-1){ hIdx++; inp.value=hist[hIdx]; } }
-    else if(e.key==='ArrowDown'){ e.preventDefault(); if(hIdx>0){ hIdx--; inp.value=hist[hIdx]; } else{ hIdx=-1; inp.value=''; } }
+    if(e.key==='Enter'){tRun(inp.value);inp.value='';}
+    else if(e.key==='ArrowUp'){e.preventDefault();if(hIdx<hist.length-1){hIdx++;inp.value=hist[hIdx];}}
+    else if(e.key==='ArrowDown'){e.preventDefault();if(hIdx>0){hIdx--;inp.value=hist[hIdx];}else{hIdx=-1;inp.value='';}}
   });
   document.getElementById('terminal').addEventListener('click',()=>inp.focus());
 }
 
-// ════════════════════════════════
-// SCROLL REVEAL
-// ════════════════════════════════
-function initReveal(){
-  const obs=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); }),{threshold:.1});
-  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-}
-
-// ════════════════════════════════
-// NAV VISIBILITY
-// ════════════════════════════════
-function initNav(){
-  const nav=document.getElementById('nav');
-  const obs=new IntersectionObserver(es=>es.forEach(e=>{ nav.classList.toggle('on',!e.isIntersecting); }),{threshold:.05});
-  obs.observe(document.getElementById('hero'));
-}
-
-// ════════════════════════════════
+// ══════════════════════════════════════════
 // BTC COPY
-// ════════════════════════════════
+// ══════════════════════════════════════════
 function copyBTC(){
-  const addr=document.getElementById('btc-addr').textContent;
-  navigator.clipboard.writeText(addr).then(()=>{
+  navigator.clipboard.writeText(document.getElementById('btc-addr').textContent).then(()=>{
     const t=document.getElementById('btc-toast');
     t.classList.add('show');
     setTimeout(()=>t.classList.remove('show'),2200);
   });
 }
 
-// ════════════════════════════════
-// INIT ALL
-// ════════════════════════════════
+// ══════════════════════════════════════════
+// SCROLL REVEAL
+// ══════════════════════════════════════════
+function initReveal(){
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ══════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════
+function initNav(){
+  const nav=document.getElementById('nav');
+  new IntersectionObserver(es=>es.forEach(e=>nav.classList.toggle('on',!e.isIntersecting)),{threshold:.05})
+    .observe(document.getElementById('hero'));
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
 function initAll(){
   initRain();
   initTerminal();
