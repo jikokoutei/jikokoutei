@@ -14,9 +14,9 @@
 ---
 
 [![GitHub](https://img.shields.io/badge/GitHub-jikokoutei-00f5ff?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jikokoutei)
-[![Instagram](https://img.shields.io/badge/Instagram-jikokoutei-bf00ff?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/jikokoutei)
-[![Content Creator](https://img.shields.io/badge/Content-Creator-ff006e?style=for-the-badge&logo=youtube&logoColor=white)](#)
-[![Anime Lover](https://img.shields.io/badge/Anime-Lover-ff9d00?style=for-the-badge&logo=crunchyroll&logoColor=white)](#)
+[![Instagram](https://img.shields.io/badge/Instagram-jik.okoutei-bf00ff?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/jik.okoutei)
+[![Anime IG](https://img.shields.io/badge/Anime_IG-ikiryospirit-ff006e?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/ikiryospirit)
+[![Content Creator](https://img.shields.io/badge/Content-Creator-ff9d00?style=for-the-badge&logo=youtube&logoColor=white)](#)
 [![Level](https://img.shields.io/badge/Level-Beginner_%F0%9F%94%B0-00f5ff?style=for-the-badge)](#)
 
 ---
@@ -31,6 +31,8 @@ class Eren:
     passion    = ["Coding", "Anime", "Creating Content"]
     status     = "Beginner Arc — Chapter 01 🔰"
     coding_is  = "LIFE 🔥"
+    main_ig    = "@jik.okoutei"
+    anime_ig   = "@ikiryospirit"   # second account, anime content only
 
     def motto(self):
         return "Every legend was once a beginner. My arc is just getting started."
@@ -71,7 +73,7 @@ class Eren:
   "languages"  : ["Python", "JavaScript", "HTML", "C", "C++", "Java"],
   "interests"  : ["Coding", "Anime", "Content Creation", "Project Management"],
   "currently"  : "Learning fundamentals & building first projects",
-  "content_on" : "Instagram @jikokoutei",
+  "content_on" : ["@jik.okoutei (main)", "@ikiryospirit (anime)"],
   "level"      : "Beginner 🔰",
   "next_goal"  : "Build something cool and share it with the world"
 }
@@ -86,10 +88,11 @@ class Eren:
 <br>
 
 [![GitHub Stats](https://github-readme-stats.vercel.app/api?username=jikokoutei&show_icons=true&theme=tokyonight&hide_border=true&title_color=00f5ff&icon_color=bf00ff&text_color=c8e6f5&bg_color=020408)](https://github.com/jikokoutei)
-
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=jikokoutei&layout=compact&theme=tokyonight&hide_border=true&title_color=00f5ff&text_color=c8e6f5&bg_color=020408)](https://github.com/jikokoutei)
 
 [![GitHub Streak](https://streak-stats.demolab.com?user=jikokoutei&theme=tokyonight&hide_border=true&stroke=00f5ff&ring=bf00ff&fire=ff006e&background=020408&sideLabels=c8e6f5&dates=c8e6f5&currStreakNum=ffffff&sideNums=ffffff)](https://git.io/streak-stats)
+
+[![trophy](https://github-profile-trophy.vercel.app/?username=jikokoutei&theme=onedark&no-frame=true&row=1&column=6)](https://github.com/ryo-ma/github-profile-trophy)
 
 </details>
 
@@ -115,19 +118,19 @@ class Eren:
 
 ## 🔗 `connect()`
 
-| Platform    | Link                                             |
-| ----------- | ------------------------------------------------- |
-| 🐙 GitHub    | [@jikokoutei](https://github.com/jikokoutei)      |
-| 📸 Instagram | [@jikokoutei](https://instagram.com/jikokoutei)   |
-| 🌐 Portfolio | [jikokoutei.pages.dev](https://jikokoutei.pages.dev/) |
+| Platform           | Link                                                     |
+| ------------------ | ---------------------------------------------------------- |
+| 🐙 GitHub           | [@jikokoutei](https://github.com/jikokoutei)                |
+| 📸 Instagram (main) | [@jik.okoutei](https://instagram.com/jik.okoutei)            |
+| 🌸 Instagram (anime)| [@ikiryospirit](https://instagram.com/ikiryospirit)          |
+| ⛩ Linktree         | [ikiryospirit](https://linktr.ee/ikiryospirit)               |
+| 🌐 Portfolio        | [jikokoutei.pages.dev](https://jikokoutei.pages.dev/)        |
 
 ---
 
 ## ₿ `donate()`
 
 > *If my content helped you or you just wanna support the arc — appreciate it 🙏*
-
-[![BTC QR Code](https://github.com/jikokoutei/jikokoutei/raw/main/myaddr.png)](/jikokoutei/jikokoutei/blob/main/myaddr.png)
 
 ```
 ₿  14CXBxLbDBE338NiTeeVSSNHKotRFPdGJn
@@ -137,21 +140,11 @@ class Eren:
 
 ---
 
-## 📦 `latest_repos()`
+## 📦 `latest_repo()`
 
-<!--LATEST_REPOS_START-->
-**[boothsalgo](https://github.com/jikokoutei/boothsalgo)** `HTML`
-> _No description yet_
-★ 0 · pushed 20 Jun 2026
+<!--LATEST_REPO_START-->
 
-**[wallpaper](https://github.com/jikokoutei/wallpaper)**
-> _No description yet_
-★ 0 · pushed 20 Jun 2026
-
-**[minimalista](https://github.com/jikokoutei/minimalista)** `JavaScript`
-> _No description yet_
-★ 0 · pushed 20 Jun 2026
-<!--LATEST_REPOS_END-->
+<!--LATEST_REPO_END-->
 
 
 ---
